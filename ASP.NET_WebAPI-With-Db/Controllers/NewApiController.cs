@@ -14,17 +14,25 @@ namespace ASP.NET_WebAPI_With_Db.Controllers
         practiceEntities db = new practiceEntities();
 
         [HttpGet]
-        public IHttpActionResult Action()
+        public IHttpActionResult GetStudent()
         {
             List<student> obj = db.students.ToList();
             return Ok(obj);
         }
 
         [HttpGet]
-        public IHttpActionResult Index(int id)
+        public IHttpActionResult GetStudentById(int id)
         {
             var obj = db.students.Where(model => model.std_id == id).FirstOrDefault();
             return Ok(obj);
+        }
+
+        [HttpPost]
+        public IHttpActionResult InsertStudent(student e)
+        {
+            db.students.Add(e);
+            db.SaveChanges();
+            return Ok();
         }
     }
 }
