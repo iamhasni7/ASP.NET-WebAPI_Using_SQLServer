@@ -64,6 +64,16 @@ namespace ASP.NET_WebAPI_With_Db.Controllers
             return Ok();
         }
 
+        //DELETE Method
 
+        [HttpDelete]
+        public IHttpActionResult DeleteStudent(int id)
+        {
+            var obj = db.students.Where(model => model.std_id == id).FirstOrDefault();
+            db.Entry(obj).State = EntityState.Deleted;
+            db.SaveChanges();
+
+            return Ok();
+        }
     }
 }
