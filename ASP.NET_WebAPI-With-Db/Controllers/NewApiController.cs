@@ -1,6 +1,7 @@
 ﻿using ASP.NET_WebAPI_With_Db.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -34,6 +35,32 @@ namespace ASP.NET_WebAPI_With_Db.Controllers
         {
             db.students.Add(e);
             db.SaveChanges();
+            return Ok();
+        }
+
+        //PUT Method
+        [HttpPut]
+        public IHttpActionResult UpdateStudent(student e)
+        {
+            db.Entry(e).State = EntityState.Modified;
+            db.SaveChanges();
+
+            /*var std = db.students.Where(model => model.std_id == e.std_id).FirstOrDefault();
+            if (std != null)
+            {
+                std.std_id = e.std_id;
+                std.std_name = e.std_name;
+                std.std_gender = e.std_gender;
+                std.std_age = e.std_age;
+                std.std_class = e.std_class;
+                std.t_id = e.t_id;
+                db.SaveChanges();
+            }
+            else
+            {
+                return NotFound();
+            }*/
+
             return Ok();
         }
 
