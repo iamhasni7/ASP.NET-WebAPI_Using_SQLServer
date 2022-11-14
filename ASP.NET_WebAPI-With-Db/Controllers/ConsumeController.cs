@@ -50,5 +50,23 @@ namespace ASP.NET_WebAPI_With_Db.Controllers
 
             return View("Create");
         }
+
+        public ActionResult Details(int id)
+        {
+            student e = null;
+            client.BaseAddress = new Uri("https://localhost:44321/api/NewApi");
+            var response = client.GetAsync("NewApi?id=" + id.ToString());
+            response.Wait();
+
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                var display = test.Content.ReadAsAsync<student>();
+                display.Wait();
+                e = display.Result;
+            }
+
+            return View(e);
+        }
     }
 }

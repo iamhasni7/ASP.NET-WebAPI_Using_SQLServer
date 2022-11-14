@@ -13,6 +13,7 @@ namespace ASP.NET_WebAPI_With_Db.Controllers
     {
         practiceEntities db = new practiceEntities();
 
+        //GET Method
         [HttpGet]
         public IHttpActionResult GetStudent()
         {
@@ -27,6 +28,7 @@ namespace ASP.NET_WebAPI_With_Db.Controllers
             return Ok(obj);
         }
 
+        //POST Method
         [HttpPost]
         public IHttpActionResult InsertStudent(student e)
         {
@@ -34,5 +36,7 @@ namespace ASP.NET_WebAPI_With_Db.Controllers
             db.SaveChanges();
             return Ok();
         }
+
+
     }
 }
