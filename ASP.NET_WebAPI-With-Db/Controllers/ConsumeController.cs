@@ -29,7 +29,12 @@ namespace ASP.NET_WebAPI_With_Db.Controllers
 
             return View(list);
         }
-        
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Create(student std)
         {
